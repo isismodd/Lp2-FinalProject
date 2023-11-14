@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    protected static Connection initializeDatabase()
+    public static Connection initializeDatabase()
         throws SQLException, ClassNotFoundException
     {
         // Initialize all the information regarding
