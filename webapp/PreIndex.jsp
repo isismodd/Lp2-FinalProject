@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="pacote.LoginBean" %>
+<%! LoginBean loginBean = new LoginBean(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +56,14 @@
         SENHA: <input type="password" name="senha" required><br>
         <input type="submit" value="ENTRAR">
         <h4> <a href="cadastro.jsp"><button> NÃO TEM CADASTRO? FAÇA AGORA</button></a> </h4>
-
     </form>
+ <%-- Processar dados do formulário e atualizar o JavaBean --%>
+    <% 
+        String nome = request.getParameter("nome");
+        String senha = request.getParameter("senha");
 
+        loginBean.setNome(nome);
+        loginBean.setSenha(senha);
+    %>
 </body>
 </html>
