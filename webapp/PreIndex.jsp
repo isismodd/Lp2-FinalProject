@@ -18,6 +18,17 @@
             justify-content: center;
             height: 100vh;
         }
+        
+        .form1{
+        	background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position:absolute;
+            top: 600px;
+        }
+
 
         form {
             background-color: rgba(255, 255, 255, 0.8);
@@ -55,8 +66,10 @@
         NOME: <input type="text" name="nome" required><br>
         SENHA: <input type="password" name="senha" required><br>
        <input type="submit" value="ENTRAR">
-        <h4> <a href="cadastro.jsp"><button> NÃO TEM CADASTRO? FAÇA AGORA</button></a> </h4>
-    </form>
+    </form >
+    <form class=form1 action="cadastro.jsp" method="post">
+    <h4> <a href="cadastro.jsp"><button> NÃO TEM CADASTRO? FAÇA AGORA</button></a> </h4>
+   </form>
  <%-- Processar dados do formulÃ¡rio e atualizar o JavaBean --%>
     <% 
         String nome = request.getParameter("nome");
