@@ -1,45 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.net.URLDecoder" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="javax.servlet.http.Cookie" %>
-<%@ page import="pacote.UserBean" %>
 
 <%
-    try {
-        // Recuperar os par‚metros do formul·rio
+    // Verifica se os par√¢metros de cadastro foram enviados
+    if (request.getParameter("nome") != null && request.getParameter("senha") != null) {
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
 
-        // CriaÁ„o e configuraÁ„o do JavaBean
-        UserBean user = new UserBean();
-        user.setNome(nome);
-        user.setSenha(senha);
+        // Valide os dados, fa√ßa o processamento do cadastro (por exemplo, adicione ao banco de dados)
 
-        // Verificar se o usu·rio j· est· cadastrado
-        Map<String, UserBean> usuarios = (Map<String, UserBean>) application.getAttribute("usuarios");
-        if (usuarios == null) {
-            usuarios = new HashMap<>();
-            application.setAttribute("usuarios", usuarios);
-        }
+        // Criar cookies e adicion√°-los √† resposta
+        Cookie nomeCookie = new Cookie("nome", URLEncoder.encode(nome, "UTF-8"));
+        Cookie senhaCookie = new Cookie("senha", URLEncoder.encode(senha, "UTF-8"));
 
-        if (usuarios.containsKey(nome)) {
-            // Usu·rio j· cadastrado
-            response.sendRedirect("index.jsp?erro=" + URLEncoder.encode("Usu·rio j· cadastrado", "UTF-8"));
-        } else {
-            // Cadastrar o usu·rio
-            usuarios.put(nome, user);
+        // Definir a expira√ß√£o dos cookies (por exemplo, 1 hora)
+        nomeCookie.setMaxAge(60 * 60);
+        senhaCookie.setMaxAge(60 * 60);
 
-            // Configurar o cookie com o nome do usu·rio
-            String cookieValue = URLEncoder.encode(nome, "UTF-8");
-            Cookie cookie = new Cookie("usuario", cookieValue);
-            response.addCookie(cookie);
+        // Adicionar os cookies √† resposta
+        response.addCookie(nomeCookie);
+        response.addCookie(senhaCookie);
 
-            // Redirecionar para a p·gina home (index.jsp)
-            response.sendRedirect("index.jsp");
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        response.sendRedirect("index.jsp?erro=" + URLEncoder.encode("Erro durante o cadastro", "UTF-8"));
+        // Redirecionar para a p√°gina de login
+        response.sendRedirect("login.jsp");
     }
 %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usu√°rio</title>
+    <!-- Seu c√≥digo de estilo aqui -->
+</head>
+<body>
+    <form action="" method="post">
+        <h1>CADASTRO DE USU√ÅRIO</h1>
+        NOME: <input type="text" name="nome" required><br>
+        SENHA: <input type="password" name="senha" required><br>
+        <input type="submit" value="CADASTRAR">
+    </form>
+</body>
+</html>
