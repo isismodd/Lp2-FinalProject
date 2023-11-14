@@ -13,7 +13,7 @@ html, body{
     height: 100%;
     padding: 0;
     margin: 0;
-    background-image:url('BackgroundIndex.jpg');
+    background-image:url('https://aventurasnahistoria.uol.com.br/media/uploads/curiosidades/fotografia.jpg');
 }
 body{
     align-items: center;
