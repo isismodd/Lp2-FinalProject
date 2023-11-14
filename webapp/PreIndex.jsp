@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro de Usuario</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,20 +50,21 @@
     </style>
 </head>
 <body>
-    <form action="cadastro.jsp" method="post">
+    <form action="index.jsp" method="post">
         <h1>FAÇA SEU LOGIN</h1>
         NOME: <input type="text" name="nome" required><br>
         SENHA: <input type="password" name="senha" required><br>
-        <input type="submit" value="ENTRAR">
+       <input type="submit" value="ENTRAR">
         <h4> <a href="cadastro.jsp"><button> NÃO TEM CADASTRO? FAÇA AGORA</button></a> </h4>
     </form>
- <%-- Processar dados do formulário e atualizar o JavaBean --%>
+ <%-- Processar dados do formulÃ¡rio e atualizar o JavaBean --%>
     <% 
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
 
         loginBean.setNome(nome);
         loginBean.setSenha(senha);
+ 
     %>
 </body>
 </html>
